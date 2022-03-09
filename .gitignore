@@ -1,8 +1,5 @@
-
 __pycache__/
-
 .idea/
-
 logs/
-
 yandex-tank_result.db
+temp/
