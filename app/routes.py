@@ -43,3 +43,9 @@ def get_result():
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
     return render_template('dashboard.html')
+
+@app.route('/dashboard/result', methods=['GET'])
+def dashboard_get_by_id():
+    id = request.args.get('id')
+    db_result = db.session.query(Result).filter_by(Id=int(id)).first()
+    return db_result.LoadResult, 200
