@@ -16,7 +16,7 @@ import argparse
 
 
 def get_file() -> str:
-    current_location = os.path.abspath(os.path.dirname(__file__))
+    current_location = os.path.abspath(os.path.dirname(__file__)) + '/temp'
     current_time = datetime.datetime.today()
 
     list_dir = os.listdir(current_location)
@@ -60,7 +60,7 @@ if __name__ == '__main__':
                         help='A required url address of service load result')
     args = parser.parse_args()
     if args.url_arg:
-        send_request('http://localhost:44551/result/add', parse_file())
+        send_request(args.url_arg, parse_file())
     else:
         raise Exception('There is no a url address')
 
