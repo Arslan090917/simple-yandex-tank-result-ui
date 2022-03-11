@@ -32,20 +32,25 @@ def add_result():
 
 @app.route('/result', methods=['GET'])
 def get_result():
-    try:
-        db_result = db.session.query(Result).all()
-        return db_result.LoadResult, 200
-    except Exception:
-        answer = traceback.format_exc()
-        app.logger.error(answer)
-        return answer,  500
+    results = {}
+    db_results = db.session.query(Result).all()
+    for db_result in db_results:
+        results[db_result.Id] = [str(db_result.CreateDateUtc), db_result.AvgRPS]
+    return render_template('result.html', load_results=results)
+    # try:
+    #     db_result = db.session.query(Result).all()
+    #     return db_result.LoadResult, 200
+    # except Exception:
+    #     answer = traceback.format_exc()
+    #     app.logger.error(answer)
+    #     return answer,  500
 
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
     return render_template('dashboard.html')
 
-@app.route('/dashboard/result', methods=['GET'])
+@app.route('/dashboard/loadResult', methods=['GET'])
 def dashboard_get_by_id():
     id = request.args.get('id')
-    db_result = db.session.query(Result).filter_by(Id=int(id)).first()
+    db_result = db.session.query(Result).filter_by(Id=id).first()
     return db_result.LoadResult, 200

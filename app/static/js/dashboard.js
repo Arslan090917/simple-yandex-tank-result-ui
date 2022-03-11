@@ -1,12 +1,20 @@
 /* globals Chart:false, feather:false */
 
 (function () {
+
+   const params = new Proxy(new URLSearchParams(window.location.search), {
+   get: (searchParams, prop) => searchParams.get(prop),
+   });
+
+   var url_params = params.id; // "some_value"
+
+
   'use strict'
    // 1. Создаём новый объект XMLHttpRequest
    var xhr = new XMLHttpRequest();
 
    // 2. Конфигурируем его: GET-запрос на URL 'phones.json'
-   xhr.open('GET', '/dashboard/result?id=1', false);
+   xhr.open('GET', '/dashboard/loadResult?id=' + url_params, false);
 
    // 3. Отсылаем запрос
    xhr.send();

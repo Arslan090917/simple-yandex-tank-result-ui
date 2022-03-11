@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-5">
+      <h1>Load test results</h1>
+      <div class="list-group">
+          {% for key, values in load_results.items() %}
+            <a href="/dashboard?id={{ key }}" class="list-group-item list-group-item-action">{{ values[0] }}</a>
+          {% endfor %}
+      </div>
+    </main>
+{% endblock %}
