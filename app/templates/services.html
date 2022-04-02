@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10">
+    <div class="mb-3">
+      <label for="service" class="form-label">Service name</label>
+      <input type="text" class="form-control" id="service" placeholder="BWAF">
+    </div>
+    <div class="mb-3">
+      <label for="load" class="form-label">Load profile</label>
+      <input type="text" class="form-control" id="load" placeholder="RPS">
+        <label for="loadtime" class="form-label">Load time</label>
+        <input type="text" class="form-control" id="loadtime" placeholder="seconds">
+    </div>
+    <div class="mb-3">
+      <label for="Description" class="form-label">Description</label>
+      <textarea type="text" class="form-control" id="Description" row="3" placeholder="Some text"></textarea>
+    </div>
+    <div class="mb-3">
+        <button type="button" class="btn btn-primary btn-lg">Large button</button>
+    </div>
+</main>
+{% endblock %}

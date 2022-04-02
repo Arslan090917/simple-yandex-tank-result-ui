@@ -52,5 +52,12 @@ def dashboard():
 @app.route('/dashboard/loadResult', methods=['GET'])
 def dashboard_get_by_id():
     id = request.args.get('id')
-    db_result = db.session.query(Result).filter_by(Id=id).first()
+    if id != 'null':
+        db_result = db.session.query(Result).filter_by(Id=id).first()
+    else:
+        db_result = db.session.query(Result).order_by(Result.Id).first()
     return db_result.LoadResult, 200
+
+@app.route('/service', methods=['GET', 'POST'])
+def service():
+    return render_template('services.html')
